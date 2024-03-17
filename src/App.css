@@ -1,0 +1,35 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+h1, footer, .search {
+  text-align: center;
+}
+
+.card {
+  display: grid;
+  padding: 2em;
+  border-radius: 20px;
+  background-color: rgb(123, 153, 187);
+  margin: 1rem;
+  grid-template:
+    "cardtitle cardlogo" auto
+    "cardinfo cardlogo" auto
+    / 4fr 1fr;
+}
+
+.card-title {
+  grid-area: cardtitle;
+}
+.card-info {
+  grid-area: cardinfo;
+  display: flex;
+}
+.card-info > p {
+  margin: 1rem;
+}
+
+.employer {
+  grid-area: cardlogo;
+}
