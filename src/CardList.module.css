@@ -10,14 +10,14 @@
     / 4fr 1fr;
 }
 
-.title {
+.card-title {
   grid-area: cardtitle;
 }
-.info {
+.card-info {
   grid-area: cardinfo;
   display: flex;
 }
-.info > p {
+.card-info > p {
   margin: 1rem;
 }
 
