@@ -1,0 +1,26 @@
+.card {
+  display: grid;
+  padding: 2em;
+  border-radius: 20px;
+  background-color: rgb(123, 153, 187);
+  margin: 1rem;
+  grid-template:
+    "cardtitle cardlogo" auto
+    "cardinfo cardlogo" auto
+    / 4fr 1fr;
+}
+
+.title {
+  grid-area: cardtitle;
+}
+.info {
+  grid-area: cardinfo;
+  display: flex;
+}
+.info > p {
+  margin: 1rem;
+}
+
+.employer {
+  grid-area: cardlogo;
+}

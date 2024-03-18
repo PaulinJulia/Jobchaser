@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import List from "./List"
+import Search from "./Search";
 
 function App() {
   const [jobs, setPosts] = useState([]);
@@ -52,37 +54,6 @@ function Header() {
   );
 }
 
-function List({ jobs }) {
-  return (
-    <ul>
-      {jobs.map((job) => (
-        <li className="card" key={job.id}>
-          <h2 className="card-title">{job.headline}</h2>
-          <div className="card-info">
-            <p>{job.workplace_addresses[0].municipality}</p>
-            <p>{job.occupation_field.label}</p>
-          </div>
-          <p className="employer">{job.employer.name}</p>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function Search(props) {
-  return (
-    <form className="search">
-      <label htmlFor="search">Search: </label>
-      <input
-        id="search"
-        type="text"
-        onChange={props.onSearch}
-        value={props.searchTerm}
-      />
-      <button id="search-button">Search</button>
-    </form>
-  );
-}
 
 function Footer() {
   return (
