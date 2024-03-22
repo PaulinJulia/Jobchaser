@@ -16,10 +16,10 @@ function Header() {
       });
   };
   return (
-    <header>
-      <h1>Jobchaser</h1>
+    <header className="text-center decoration-36">
+      <Link to="/">Jobchaser</Link>
       <nav>
-        <ul>
+        <ul className="flex align-items gap-9">
           <li>
             <Link to="/signin">Sign In</Link>
           </li>

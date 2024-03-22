@@ -7,8 +7,8 @@ import {
   Outlet,
 } from "react-router-dom";
 import "./App.css";
-import List from "./List";
-import Search from "./Search";
+import List from "./components/List";
+import Search from "./components/Search";
 import SignInPage from "./components/SignInPage";
 import SignUpPage from "./components/SignUpPage";
 import SavedJobsPage from "./components/SavedJobsPage";

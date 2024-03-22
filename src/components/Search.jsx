@@ -3,10 +3,11 @@ import style from "./Search.module.css";
 function Search(props) {
   return (
     <form className={style.search}>
-      <label htmlFor="search">Search: </label>
+      <label htmlFor="search"></label>
       <input
         id="search"
         type="text"
+        placeholder="Search..."
         onChange={props.onSearch}
         value={props.searchTerm}
       />
