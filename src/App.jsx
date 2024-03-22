@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   Navigate,
-  Link,
   Outlet,
 } from "react-router-dom";
 import "./App.css";
@@ -13,9 +12,15 @@ import Search from "./Search";
 import SignInPage from "./components/SignInPage";
 import SignUpPage from "./components/SignUpPage";
 import SavedJobsPage from "./components/SavedJobsPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { useContext } from "react"
+import { AuthContext } from "./context/AuthContext"
 
 function ProtectedRoute() {
-  const isAuthenticated = false;
+    const authContext = useContext(AuthContext);
+  const isAuthenticated = authContext && authContext.user !== null;
+  console.log("isAuthenticated ", isAuthenticated);
   return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
 }
 
@@ -45,8 +50,12 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
-  const searched = jobs.filter((job) =>
-    job.headline.toLowerCase().includes(searchTerm.toLowerCase())
+  const searched = jobs.filter(
+    (job) =>
+      job.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.workplace_addresses[0].municipality
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -54,48 +63,18 @@ function App() {
       <BrowserRouter>
         <Header />
         <Search onSearch={handleChange} searchTerm={searchTerm} />
-        <main>
-          {isLoading && <div>Loading...</div>}
-          <Routes>
-            <Route path="/" element={<List jobs={searched} />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/savedjobs" element={<ProtectedRoute />}>
-              <Route path="/savedjobs" element={<SavedJobsPage />} />
-            </Route>
-          </Routes>
-        </main>
+        {isLoading && <div>Loading...</div>}
+        <Routes>
+          <Route path="/" element={<List jobs={searched} />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/savedjobs" element={<ProtectedRoute />}>
+            <Route path="/savedjobs" element={<SavedJobsPage />} />
+          </Route>
+        </Routes>
         <Footer />
       </BrowserRouter>
     </>
-  );
-}
-
-function Header() {
-  const handleSignOut = () => {};
-  return (
-    <header>
-      <h1>Jobchaser</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/signin">Sign In</Link>
-          </li>
-          <li>
-            <Link to="/signup">Sign Up</Link>
-          </li>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </ul>
-      </nav>
-    </header>
-  );
-}
-
-function Footer() {
-  return (
-    <footer>
-      <p>jobchaser.se</p>
-    </footer>
   );
 }
 

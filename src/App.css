@@ -1,8 +1,11 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  background-image: linear-gradient(
+    to right,
+    rgb(138, 138, 238),
+    rgb(69, 79, 147)
+  );
 }
-h1, footer {
+h1,
+footer {
   text-align: center;
 }
