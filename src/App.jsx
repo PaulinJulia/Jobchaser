@@ -14,11 +14,11 @@ import SignUpPage from "./components/SignUpPage";
 import SavedJobsPage from "./components/SavedJobsPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { useContext } from "react"
-import { AuthContext } from "./context/AuthContext"
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function ProtectedRoute() {
-    const authContext = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
   const isAuthenticated = authContext && authContext.user !== null;
   console.log("isAuthenticated ", isAuthenticated);
   return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
@@ -55,7 +55,8 @@ function App() {
       job.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.workplace_addresses[0].municipality
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase()) ||
+      job.brief.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (

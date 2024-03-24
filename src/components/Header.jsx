@@ -16,19 +16,26 @@ function Header() {
       });
   };
   return (
-    <header className="text-center decoration-36">
-      <Link to="/">Jobchaser</Link>
-      <nav>
-        <ul className="flex align-items gap-9">
+    <header>
+      <nav className="flex justify-end">
+        <ul className="flex item-center text-lg font-semibold text-gray gap-9 p-2 m-2">
           <li>
             <Link to="/signin">Sign In</Link>
           </li>
           <li>
             <Link to="/signup">Sign Up</Link>
           </li>
-          <button onClick={handleSignOut}>Sign Out</button>
+          <button className="hidden" onClick={handleSignOut}>
+            Sign Out
+          </button>
         </ul>
       </nav>
+      <Link
+        to="/"
+        className="flex justify-center font-bold text-3xl text-gray-800 p-2 m-2"
+      >
+        JOBCHASER
+      </Link>
     </header>
   );
 }

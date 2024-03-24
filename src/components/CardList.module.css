@@ -1,17 +1,37 @@
+.card-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .card {
   display: grid;
-  padding: 2em;
+  padding: 1rem;
+  height: 300px;
+  max-width: 600px;
   border-radius: 20px;
   background-color: rgb(223, 229, 237);
   margin: 1rem;
   grid-template:
-    "cardtitle cardlogo" auto
-    "cardinfo cardlogo" auto
+    "cardtitle employerName" auto
+    "cardbrief employerName" auto
+    "cardinfo employerName" auto
     / 4fr 1fr;
 }
 
 .card-title {
   grid-area: cardtitle;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+.card-brief {
+  grid-area: cardbrief;
+  overflow: hidden;
+  padding: 0.5rem;
+  height: 100px;
+  white-space: normal;
+  text-overflow: ellipsis;
 }
 .card-info {
   grid-area: cardinfo;
@@ -19,8 +39,13 @@
 }
 .card-info > p {
   margin: 1rem;
+  padding: 1rem;
 }
 
 .employer {
-  grid-area: cardlogo;
+  grid-area: employerName;
+  display: flex;
+  align-self: center;
+  padding: 0.5rem;
+  margin: 1rem;
 }

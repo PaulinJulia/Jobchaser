@@ -11,7 +11,6 @@ function Search(props) {
         onChange={props.onSearch}
         value={props.searchTerm}
       />
-      <button id="search-button">Search</button>
     </form>
   );
 }
