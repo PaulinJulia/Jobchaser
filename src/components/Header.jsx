@@ -1,20 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { Link } from "react-router-dom";
+
 
 function Header() {
-  const navigate = useNavigate();
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("User signed out successfully");
-        // Additional actions after sign out, such as redirecting to another page
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error signing out:", error);
-      });
-  };
   return (
     <header>
       <nav className="flex justify-end">
@@ -25,9 +12,6 @@ function Header() {
           <li>
             <Link to="/signup">Sign Up</Link>
           </li>
-          <button className="hidden" onClick={handleSignOut}>
-            Sign Out
-          </button>
         </ul>
       </nav>
       <Link
