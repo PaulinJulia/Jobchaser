@@ -25,6 +25,9 @@
   font-size: 1.5rem;
   padding: 0.5rem;
 }
+.card-title:hover {
+  text-decoration: underline;
+}
 .card-brief {
   grid-area: cardbrief;
   overflow: hidden;

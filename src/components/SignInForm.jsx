@@ -22,42 +22,58 @@ function SignInForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            {...register("email", {
-              required: "Email is required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Invalid email address",
-              },
-            })}
-          />
-          {errors.email && <span>{errors.email.message}</span>}
-        </div>
+      <div className="flex flex-col items-center justify-center">
+        <form
+          className="flex flex-col rounded-md posi bg-white shadow-md p-4"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="flex flex-col pr-2 pl-2 m-2">
+            <label className="font-semibold pr-2 pl-2" htmlFor="email">
+              Email:
+            </label>
+            <input
+              className="border p-1"
+              id="email"
+              type="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "Invalid email address",
+                },
+              })}
+            />
+            {errors.email && <span>{errors.email.message}</span>}
+          </div>
 
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 8,
-                message: "Password must be at least 8 characters",
-              },
-            })}
-          />
-          {errors.password && <span>{errors.password.message}</span>}
-        </div>
+          <div className="flex flex-col pr-2 pl-2 m-2">
+            <label className="font-semibold pr-2 pl-2" htmlFor="password">
+              Password:
+            </label>
+            <input
+              className="border p-1"
+              id="password"
+              type="password"
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+              })}
+            />
+            {errors.password && <span>{errors.password.message}</span>}
+          </div>
 
-        <button type="submit">Log in</button>
-      </form>
-      <Link to="/signup">Don't have an accont? Sign Up</Link>
+          <button
+            className="bg-purple-500 hover:bg-purple-700 rounded-md font-semibold p-2 m-4"
+            type="submit"
+          >
+            Log in
+          </button>
+        </form>
+        <Link to="/signup">Don't have an accont? Sign Up</Link>
+      </div>
     </>
   );
 }

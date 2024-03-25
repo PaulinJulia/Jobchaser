@@ -64,9 +64,16 @@ function App() {
       <BrowserRouter>
         <Header />
         <Search onSearch={handleChange} searchTerm={searchTerm} />
-        {isLoading && <div>Loading...</div>}
         <Routes>
-          <Route path="/" element={<List jobs={searched} />} />
+          <Route
+            path="/"
+            element={
+              <>
+                {isLoading && <div className="text-center">Loading...</div>}{" "}
+                <List jobs={searched} />
+              </>
+            }
+          />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/savedjobs" element={<ProtectedRoute />}>
