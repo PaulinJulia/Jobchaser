@@ -59,17 +59,22 @@ function App() {
       job.brief.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // const showSearch =
+  //   location.pathname !== "/signin" && location.pathname !== "/signup";
+
   return (
     <>
       <BrowserRouter>
         <Header />
-        <Search onSearch={handleChange} searchTerm={searchTerm} />
         <Routes>
           <Route
             path="/"
             element={
               <>
-                {isLoading && <div className="text-center">Loading...</div>}{" "}
+                <Search onSearch={handleChange} searchTerm={searchTerm} />
+                {isLoading && (
+                  <div className="text-center">Loading...</div>
+                )}{" "}
                 <List jobs={searched} />
               </>
             }
