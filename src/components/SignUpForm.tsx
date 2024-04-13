@@ -1,22 +1,22 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm, FieldError } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
+import { SignUpFormData } from "../types/types";
 
-function SignInForm() {
+function SignUpForm() {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => {
+  } = useForm<SignUpFormData>();
+
+  const formSubmit: SubmitHandler<SignUpFormData> = (data) => {
     console.log("Form Submitted: ", data);
-    const { email, password } = data;
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      const user = userCredential.user;
-      console.log("User signed in: ", user);
-      navigate("/savedjobs");
+    createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
+      navigate("/signin");
     });
   };
 
@@ -25,7 +25,7 @@ function SignInForm() {
       <div className="flex flex-col items-center justify-center">
         <form
           className="flex flex-col rounded-md posi bg-white shadow-md p-4"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(formSubmit)}
         >
           <div className="flex flex-col pr-2 pl-2 m-2">
             <label className="font-semibold pr-2 pl-2" htmlFor="email">
@@ -43,7 +43,9 @@ function SignInForm() {
                 },
               })}
             />
-            {errors.email && <span>{errors.email.message}</span>}
+            {errors.email && (
+              <span>{(errors.email as FieldError)?.message}</span>
+            )}
           </div>
 
           <div className="flex flex-col pr-2 pl-2 m-2">
@@ -62,20 +64,44 @@ function SignInForm() {
                 },
               })}
             />
-            {errors.password && <span>{errors.password.message}</span>}
+            {errors.password && (
+              <span>{(errors.password as FieldError)?.message}</span>
+            )}
+          </div>
+
+          <div className="flex flex-col pr-2 pl-2 m-2">
+            <label
+              className="font-semibold pr-2 pl-2"
+              htmlFor="confirmPassword"
+            >
+              Confirm Password:
+            </label>
+            <input
+              className="border p-1"
+              id="confirmPassword"
+              type="password"
+              {...register("confirmPassword", {
+                required: "Please confirm your password",
+                validate: (value) =>
+                  value === watch("password") || "Passwords do not match",
+              })}
+            />
+            {errors.confirmPassword && (
+              <span>{(errors.confirmPassword as FieldError)?.message}</span>
+            )}
           </div>
 
           <button
             className="bg-purple-500 hover:bg-purple-700 rounded-md font-semibold p-2 m-4"
             type="submit"
           >
-            Log in
+            Register
           </button>
         </form>
-        <Link to="/signup">Don't have an accont? Sign Up</Link>
+        <Link to="/signin">Already have an account? Sign In</Link>
       </div>
     </>
   );
 }
 
-export default SignInForm;
+export default SignUpForm;

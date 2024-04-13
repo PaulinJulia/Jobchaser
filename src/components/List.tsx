@@ -1,6 +1,7 @@
 import style from "./CardList.module.css";
+import { ListInfo } from "../types/types";
 
-function List({ jobs }) {
+function List({ jobs }: ListInfo) {
   return (
     <div className="container">
       <ul className={style["card-list"]}>

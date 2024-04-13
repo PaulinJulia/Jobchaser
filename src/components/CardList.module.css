@@ -52,7 +52,7 @@
   padding: 0.5rem;
 }
 
-@media (min-width: 425px) {
+/* @media (min-width: 425px) {
   .container {
     max-width: 425px;
   }
@@ -110,4 +110,4 @@
   .container {
     max-width: 2560px;
   }
-}
+} */

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -14,8 +14,10 @@ import SignUpPage from "./components/SignUpPage";
 import SavedJobsPage from "./components/SavedJobsPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Category from "./components/Category";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import { Job } from "./types/types";
 
 function ProtectedRoute() {
   const authContext = useContext(AuthContext);
@@ -25,19 +27,19 @@ function ProtectedRoute() {
 }
 
 function App() {
-  const [jobs, setPosts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
         const response = await fetch(
-          "https://links.api.jobtechdev.se/joblinks?q=utvecklare stockholm"
+          "https://links.api.jobtechdev.se/joblinks?q={sverige}"
         );
         const data = await response.json();
         //console.log(data.hits);
-        setPosts(data.hits);
+        setJobs(data.hits);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching");
@@ -46,11 +48,11 @@ function App() {
     fetchPost();
   }, []); //Dependency array
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const searched = jobs.filter(
+  const searched: Job[] = jobs.filter(
     (job) =>
       job.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.workplace_addresses[0].municipality
@@ -58,9 +60,6 @@ function App() {
         .includes(searchTerm.toLowerCase()) ||
       job.brief.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // const showSearch =
-  //   location.pathname !== "/signin" && location.pathname !== "/signup";
 
   return (
     <>
@@ -72,6 +71,7 @@ function App() {
             element={
               <>
                 <Search onSearch={handleChange} searchTerm={searchTerm} />
+                <Category />
                 {isLoading && (
                   <div className="text-center">Loading...</div>
                 )}{" "}

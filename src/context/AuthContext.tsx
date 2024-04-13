@@ -1,12 +1,17 @@
 import { createContext, useState, useEffect } from "react";
+import { User, AuthContextType, AuthProviderProps } from "../types/types";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext<AuthContextType>({
+  user: null,
+  signIn: () => {},
+  signOut: () => {},
+});
 
-export function AuthProvider({ children }) {
+export function AuthProvider({ children }: AuthProviderProps) {
   //Global state som vi kan "skicka" med Context
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
 
-  const signIn = (mockUser) => {
+  const signIn = (mockUser: User) => {
     setUser(mockUser); // Simulate a user signing in with mock data
   };
 
@@ -20,6 +25,7 @@ export function AuthProvider({ children }) {
     signIn(mockUser);
   }, []);
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, signIn, signOut }}> {children} </AuthContext.Provider>
+  );
 }
-
