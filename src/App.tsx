@@ -66,7 +66,6 @@ const {jobs, position} = useSelector((state: RootState) => state.category)
               <>
                 <Search onSearch={handleChange} searchTerm={searchTerm} />
                 <Category />
-                <Category />
                 {isLoading && (
                   <div className="text-center">Loading...</div>
                 )}{" "}
