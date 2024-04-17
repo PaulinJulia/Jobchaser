@@ -1,6 +1,18 @@
 # Jobchaser
 
-Del 3  
+## Del 4
+
+1.Vad är Redux Toolkit?  
+Det är ett bibliotek för state-management som hanterar reducers. Det skapades av Redux-teamet och bygger på Redux. Det är ett förenklat Redux, enklare att sätta upp och konfigurera. Redux toolkit erbjuder ett globalt state, där en "store" är samlingsplats som hanterar att man kan dispatcha i vilken komponent som helst. Man vill att state skall vara samlade på en plats för tydlighet och att enklare kunna ändra på. Det samma gäller för feature-logik.
+
+2.När, i vilka situationer vill man använda Redux Toolkit?  
+När man gör större applikationer där flera tillstånd behöver hanteras enhetligt över flera komponenter.
+
+3.Beskriv typiska områden hur man använder Typescript i React? (ex props, event, useReducer, etc)  
+Genom att typa props och State kan man tidigt upptäcka fel i utvecklingsprocessen. Typning av event och hooks är viktigt för att garantera korrekt användning och underlätta felhantering.
+
+## Del 3
+
 1.Vad menas med Reacts ekosystem?  
 React-ekosystemet avser det bredare ekosystemet av verktyg, bibliotek, ramverk och gemenskap som har vuxit runt React-biblioteket. Det omfattar allt från utvecklingsverktyg och tillägg till kompletterande bibliotek och ramverk som används tillsammans med React.
 
@@ -22,5 +34,5 @@ Fördelar:
 *Kommer med ”Preflight”. En bas-css där alla element är ”nollade från början.
 *Kan leda till snabb protyping, när man väl lärt sig.
 *Det finns färre val vad gäller typsnittsstorlek, annan storlek, färger, skuggor men man kan också välja själv.
-*Finns bra komponentbibliotek med nästan ostylade komponenter, där man kan lägga till Tailwind CSS.  
+\*Finns bra komponentbibliotek med nästan ostylade komponenter, där man kan lägga till Tailwind CSS.  
 Nackdelar att det blir tjockt och ”klumpigt” i CSS:en. Tar lite tid att lära sig.

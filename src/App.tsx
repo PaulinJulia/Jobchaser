@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -14,8 +14,13 @@ import SignUpPage from "./components/SignUpPage";
 import SavedJobsPage from "./components/SavedJobsPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Category from "./components/Category";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import {  Job } from "./types/types";
+import { fetchAds } from "./store/slices/categorySlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./store/store";
 
 function ProtectedRoute() {
   const authContext = useContext(AuthContext);
@@ -25,32 +30,23 @@ function ProtectedRoute() {
 }
 
 function App() {
-  const [jobs, setPosts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+const {jobs, position} = useSelector((state: RootState) => state.category)
+  const dispatch = useDispatch();
+  
 
   useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await fetch(
-          "https://links.api.jobtechdev.se/joblinks?q=utvecklare stockholm"
-        );
-        const data = await response.json();
-        //console.log(data.hits);
-        setPosts(data.hits);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching");
-      }
-    };
-    fetchPost();
-  }, []); //Dependency array
+    dispatch(fetchAds(position));
+  }, [position]);
 
-  const handleChange = (e) => {
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const searched = jobs.filter(
+  const searched: Job[] = jobs.filter(
     (job) =>
       job.headline.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.workplace_addresses[0].municipality
@@ -58,9 +54,6 @@ function App() {
         .includes(searchTerm.toLowerCase()) ||
       job.brief.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // const showSearch =
-  //   location.pathname !== "/signin" && location.pathname !== "/signup";
 
   return (
     <>
@@ -72,10 +65,11 @@ function App() {
             element={
               <>
                 <Search onSearch={handleChange} searchTerm={searchTerm} />
+                <Category />
                 {isLoading && (
                   <div className="text-center">Loading...</div>
                 )}{" "}
-                <List jobs={searched} />
+                <List jobs={searched}  />
               </>
             }
           />
