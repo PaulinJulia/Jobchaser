@@ -5,10 +5,11 @@ function Search(props: SearchProps) {
   return (
     <form className={style.search}>
       <label htmlFor="search"></label>
-      <input className="p-1 m-4"
+      <input
+        className="p-1 m-4 rounded-md"
         id="search"
         type="text"
-        placeholder="Job title, keywords..."
+        placeholder=" Job title, keyword..."
         onChange={props.onSearch}
         value={props.searchTerm}
       />

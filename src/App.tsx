@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { useState, useEffect, ChangeEvent } from "react";
 import {
   BrowserRouter,
@@ -38,7 +37,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAds(position));
+    setIsLoading(true);
+    dispatch(fetchAds(position)).then(()=> {
+      setIsLoading(false)
+    });
   }, [position]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -65,10 +67,10 @@ function App() {
               <>
                 <Search onSearch={handleChange} searchTerm={searchTerm} />
                 <Category />
-                {/* {isLoading && (
-                  <div className="text-center">Loading...</div>
-                )}{" "} */}
-                <List jobs={searched} />
+                {isLoading && (
+                  <div className="text-center p-5">Loading...</div>
+                )}
+                {!isLoading &&<List jobs={searched} />}
               </>
             }
           />
