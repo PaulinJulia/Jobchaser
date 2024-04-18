@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./Search.module.css";
 import { SearchProps } from "../types/types";
 

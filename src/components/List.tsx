@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./CardList.module.css";
 import { ListInfo } from "../types/types";
 

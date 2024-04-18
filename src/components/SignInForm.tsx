@@ -1,4 +1,3 @@
-import React from "react";
 import { SubmitHandler, useForm, FieldError } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, Auth } from "firebase/auth";

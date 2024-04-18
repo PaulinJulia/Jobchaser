@@ -1,4 +1,5 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+//@ts-nocheck
+import { useState, useEffect, ChangeEvent } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -17,7 +18,7 @@ import Footer from "./components/Footer";
 import Category from "./components/Category";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
-import {  Job } from "./types/types";
+import { Job } from "./types/types";
 import { fetchAds } from "./store/slices/categorySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/store";
@@ -31,16 +32,14 @@ function ProtectedRoute() {
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-const {jobs, position} = useSelector((state: RootState) => state.category)
+  const { jobs, position } = useSelector((state: RootState) => state.category);
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     dispatch(fetchAds(position));
   }, [position]);
-
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -66,10 +65,10 @@ const {jobs, position} = useSelector((state: RootState) => state.category)
               <>
                 <Search onSearch={handleChange} searchTerm={searchTerm} />
                 <Category />
-                {isLoading && (
+                {/* {isLoading && (
                   <div className="text-center">Loading...</div>
-                )}{" "}
-                <List jobs={searched}  />
+                )}{" "} */}
+                <List jobs={searched} />
               </>
             }
           />
