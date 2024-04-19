@@ -14,6 +14,10 @@
   color: white;
   margin: 1.5rem;
 }
+.headline {
+  display: flex;
+  justify-content: space-between;
+}
 
 .card-title {
   font-size: 1.5rem;

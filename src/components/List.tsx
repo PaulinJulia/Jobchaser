@@ -1,6 +1,8 @@
 import style from "./CardList.module.css";
 import { ListInfo } from "../types/types";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 function List({ jobs }: ListInfo) {
   return (
@@ -14,7 +16,10 @@ function List({ jobs }: ListInfo) {
         >
           <li className={style.card}>
             <a href={job.source_links[0].url} target="_blank">
-              <p className={style["card-title"]}>{job.headline}</p>
+              <div className={style.headline}>
+                <p className={style["card-title"]}>{job.headline}</p>
+                <FontAwesomeIcon icon={faStar} />
+              </div>
               <p className={style["card-brief"]}>{job.brief}</p>
               <div className={style["card-info"]}>
                 <p>{job.workplace_addresses[0].municipality}</p>
