@@ -1,53 +1,37 @@
 .card-list {
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .card {
-  display: grid;
   padding: 1.5rem;
   height: 300px;
-  max-width: 550px;
+  width: 550px;
   border-radius: 20px;
-  background-color: rgb(223, 229, 237);
+  background-color: rgb(59, 41, 96);
+  color: white;
   margin: 1.5rem;
-  grid-template:
-    "employerName" 2rem
-    "cardtitle" 3.5rem
-    "cardbrief" 6.9rem
-    "cardinfo" 3rem
-    / 4fr;
 }
 
 .card-title {
-  grid-area: cardtitle;
   font-size: 1.5rem;
   padding: 0.5rem;
 }
-.card-title:hover {
-  text-decoration: underline;
-}
 .card-brief {
-  grid-area: cardbrief;
-  overflow: hidden;
   padding: 0.5rem;
-
-  white-space: normal;
+  overflow: hidden;
   text-overflow: ellipsis;
+  height: 140px;
 }
 .card-info {
-  grid-area: cardinfo;
   display: flex;
 }
 .card-info > p {
-padding-left: 0.5rem;
+  margin: 0.5rem;
 }
 
 .employer {
-  grid-area: employerName;
-  display: flex;
   align-self: center;
-  padding: 0.5rem;
 }
