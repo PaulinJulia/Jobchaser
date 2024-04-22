@@ -9,7 +9,7 @@ import { ReactNode } from "react";
 
 export interface Job {
   hits: [];
-  id: number;
+  id: string;
   jobs: string;
   headline: string;
   source_links: { url: string }[];

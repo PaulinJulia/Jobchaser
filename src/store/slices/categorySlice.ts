@@ -39,7 +39,7 @@ export const categorySlice = createSlice({
 
 export const fetchAds = createAsyncThunk("category/fetchAds", async (a) => {
   const response = await fetch(
-    `https://links.api.jobtechdev.se/joblinks?q=utvecklare ${a}`
+    `https://links.api.jobtechdev.se/joblinks?q=${a}`
   );
   const jobs = await response.json();
   return jobs.hits;
