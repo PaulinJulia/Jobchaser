@@ -8,41 +8,26 @@ import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function List({ jobs }: ListInfo) {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [star, setStar] = useState(false);
-  const [favoriteList, setFavoriteList] = useState([]);
-
-  //Lagt på egenskapen favorite på objektet
-  const jobsWithFavorite = jobs.map((item) => {
-    return { ...item, favorite: isFavorite };
-  });
-  //console.log(jobsWithFavorite);
+  const [jobsListWithFavorite, setJobsListWithFavorite] = useState(
+    jobs.map((item) => {
+      return { ...item, favorite: false };
+    })
+  );
 
   const handleToggleButton = (id, e) => {
     e.preventDefault();
-
-    const findAdById = jobsWithFavorite.find((item) => item.id == id);
-    //console.log(findAdById);
-    const favoriteJob = { ...findAdById, favorite: !isFavorite };
-    //console.log(favoriteJob);
-
-    const updatedList = [...favoriteList, favoriteJob];
-    setFavoriteList(updatedList);
-    console.log(updatedList);
-
-    // if (!checkFavoriteList) {
-    //   updatedList.push(findAdById);
-    // }
-
-    // const isAnyFavorite = jobsListWithFavorite.some((job) => job.favorite);
-    setStar(() => !star);
-    localStorage.setItem("favoriteJobs", JSON.stringify(updatedList));
+    setJobsListWithFavorite((prevjob) =>
+      prevjob.map((item) =>
+        item.id === id ? { ...item, favorite: !item.favorite } : item
+      )
+    );
   };
+  localStorage.setItem("favoriteJobs", JSON.stringify(jobsListWithFavorite));
 
   return (
     <ul className={style["card-list"]}>
       {" "}
-      {jobs.map((job) => (
+      {jobsListWithFavorite.map((job) => (
         <motion.div key={job.id} whileHover={{ scale: 1.2 }}>
           <li className={style.card}>
             <a href={job.source_links[0].url} target="_blank">
@@ -54,7 +39,9 @@ function List({ jobs }: ListInfo) {
                   }}
                   className={style["favorite-star"]}
                 >
-                  <FontAwesomeIcon icon={star ? solidStar : regularStar} />
+                  <FontAwesomeIcon
+                    icon={job.favorite ? solidStar : regularStar}
+                  />
                 </button>
               </div>
               <p className={style["card-brief"]}>{job.brief}</p>

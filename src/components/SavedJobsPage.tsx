@@ -9,12 +9,16 @@ function SavedJobsPage() {
   const [favoriteJobsList, setfavoriteJobsList] = useState([]);
 
   useEffect(() => {
-    let storedFavoritesData = localStorage.getItem("favoriteJobs");
-    if (storedFavoritesData) {
-      const linkDataArray = JSON.parse(storedFavoritesData);
+    let storedFavoriteData = localStorage.getItem("favoriteJobs");
+    if (storedFavoriteData) {
+      const linkDataArray = JSON.parse(storedFavoriteData);
       setfavoriteJobsList(linkDataArray);
+        console.log(linkDataArray);
     }
   }, []);
+
+
+  
 
   const handleSignOut = () => {
     signOut(auth)
