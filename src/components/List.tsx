@@ -16,13 +16,12 @@ function List({ jobs }: ListInfo) {
 
   const handleToggleButton = (id, e) => {
     e.preventDefault();
-    setJobsListWithFavorite((prevjob) =>
-      prevjob.map((item) =>
-        item.id === id ? { ...item, favorite: !item.favorite } : item
-      )
+    const updatedJobsList = jobsListWithFavorite.map((item) =>
+      item.id === id ? { ...item, favorite: !item.favorite } : item
     );
+    setJobsListWithFavorite(updatedJobsList);
+    localStorage.setItem("favoriteJobs", JSON.stringify(updatedJobsList));
   };
-  localStorage.setItem("favoriteJobs", JSON.stringify(jobsListWithFavorite));
 
   return (
     <ul className={style["card-list"]}>

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase-config";
@@ -9,17 +10,20 @@ function SavedJobsPage() {
   const [favoriteJobsList, setfavoriteJobsList] = useState([]);
 
   useEffect(() => {
-    let storedFavoriteData = localStorage.getItem("favoriteJobs");
-    if (storedFavoriteData) {
-      const linkDataArray = JSON.parse(storedFavoriteData);
-      setfavoriteJobsList(linkDataArray);
-        console.log(linkDataArray);
+    try {
+      let storedFavoriteData = localStorage.getItem("favoriteJobs");
+
+      if (storedFavoriteData) {
+        const linkDataArray = JSON.parse(storedFavoriteData);
+        setfavoriteJobsList(linkDataArray);
+      }
+    } catch (error) {
+      console.error("Error fetching favorite ads from localStorage", error);
     }
   }, []);
 
-
+  const favoriteAds = favoriteJobsList.filter((item) => item.favorite === true);
   
-
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -41,7 +45,7 @@ function SavedJobsPage() {
           Sign Out
         </button>
         <h1 className="flex justify-center font-semibold">Saved jobs</h1>
-        <List jobs={favoriteJobsList} />
+        <List jobs={favoriteAds} />
       </div>
     </div>
   );
