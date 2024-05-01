@@ -1,5 +1,5 @@
 //@ts-nocheck
-import style from "./CardList.module.css";
+import style from "./List.module.css";
 import { ListInfo } from "../types/types";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
