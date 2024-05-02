@@ -1,5 +1,54 @@
 # Jobchaser
 
+```
+https://github.com/PaulinJulia/jobchaser
+```
+
+## Description
+
+This project is meant to be a tool for students to find internships or jobs. You can search through the ads, sort by location, be linked to the fully ad by clicking on the card. You can also mark the ad as a favorite and it will be saved to your own page. By signing in you can review all your favorite ads. 
+
+
+## Strengths and weaknesses
+
+In this project, I see the strength in the process. The project started with css-modules and later added tailwind, 
+
+as being able to reuse components. I see improvement opportunities such as using destructering more as props. 
+
+
+In general, the code could have been better on promises and async/await for a cleaner and more readable code.  
+Before this project I barely understood classes but during this project, I have understood that classes are very powerful and efficient which has sparked my interest to know more about how to use them.
+
+This project has been fun, with its logical thinking and focus on the code. It has been a very educational challenge, where I take with me a greater understanding of methods and knowledge(especially objects, higher-order functions, bracket and dot notation, spread operator, pass by reference) from the course as well as the flexibility and creativity there is in coding.  
+In this version, unfortunately, the function of the players being able to choose which cards to discard is not complete. Although time and my lack of knowledge that set the limitations, I am still happy with the result so far.
+
+## Visuals
+
+![Home page](/jobchaser.png)
+
+## How to install
+
+node.js - https://nodejs.org/en/download  
+npm - https://www.npmjs.com/
+
+## Usage
+
+If you want to test basic functionality made in React, this application can be useful for you.  
+
+## About
+
+The project was carried out by one person for the purpose of learing and consolidate knowledge during a course in React. This project has no intention of continuing.
+
+## Project status
+
+This project is on hold for correcting and feedback. Feel free to pull the code.
+
+## Support
+
+email address: julia.paulin@chasacademy.se
+
+
+
 ## Del 4
 
 1.Vad är Redux Toolkit?  
