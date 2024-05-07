@@ -1,12 +1,5 @@
 import { ReactNode } from "react";
 
-/* export interface FilterJobs {
-  id: number;
-  headline: string;
-  brief: string;
-  workplace_addresses: { municipality: string }[];
-} */
-
 export interface Job {
   hits: [];
   id: string;
@@ -17,10 +10,16 @@ export interface Job {
   brief: string;
   occupation_field: { label: string };
   employer: { name: string };
+  favorite?: boolean;
 }
 
 export interface ListInfo {
   jobs: Job[];
+}
+
+export interface CardItemProps {
+  ad: Job;
+  onToggleButton: (id: string) => void;
 }
 
 export interface SearchProps {

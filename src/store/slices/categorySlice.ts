@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
+import { Job } from "../../types/types";
 
 export interface CategoryState {
-  jobs: [];
+  jobs: Job[];
   position: string;
   isLoading: boolean;
   error: string | null | undefined;
@@ -37,7 +39,7 @@ export const categorySlice = createSlice({
   },
 });
 
-export const fetchAds = createAsyncThunk("category/fetchAds", async (a) => {
+export const fetchAds = createAsyncThunk("category/fetchAds", async (a: string) => {
   const response = await fetch(
     `https://links.api.jobtechdev.se/joblinks?q=${a}`
   );

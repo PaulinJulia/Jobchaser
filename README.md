@@ -6,21 +6,18 @@ https://github.com/PaulinJulia/jobchaser
 
 ## Description
 
-This project is meant to be a tool for students to find internships or jobs. You can search through the ads, sort by location, be linked to the fully ad by clicking on the card. You can also mark the ad as a favorite and it will be saved to your own page. By signing in you can review all your favorite ads. 
-
+This project is meant to be a tool for students to find internships or jobs. You can search through the ads, sort by location, be linked to the fully ad by clicking on the card. You can also mark an ad as a favorite and save it to your own page. By signing in you can review all your favorite ads. 
 
 ## Strengths and weaknesses
 
-In this project, I see the strength in the process. The project started with css-modules and later added tailwind, 
+In this project, I see the strength in the process. The project started for example with css-modules and later added on tailwind, it was first written in Javascript and later in the process transformed to Typescript and it started with the hook useReducer and later the Redux toolkit. All updates have been messy but also educative.
 
-as being able to reuse components. I see improvement opportunities such as using destructering more as props. 
+I see improvement opportunities such as using destructering more as props.
+I think the documentation of the API could have been more clear in order to be able to use the API better. The UX/UI could have been better.
 
+During this project, I've learned that it goes relatively fast to build an applications in React. Even though there are a lot of files and dependencies to install. Today I better understand the power of React and using components, that they are reusable, easier to replace and move around.
 
-In general, the code could have been better on promises and async/await for a cleaner and more readable code.  
-Before this project I barely understood classes but during this project, I have understood that classes are very powerful and efficient which has sparked my interest to know more about how to use them.
-
-This project has been fun, with its logical thinking and focus on the code. It has been a very educational challenge, where I take with me a greater understanding of methods and knowledge(especially objects, higher-order functions, bracket and dot notation, spread operator, pass by reference) from the course as well as the flexibility and creativity there is in coding.  
-In this version, unfortunately, the function of the players being able to choose which cards to discard is not complete. Although time and my lack of knowledge that set the limitations, I am still happy with the result so far.
+In general, the project could have been cleaner but in educational purpose it have been good with this step by step method for learing React. 
 
 ## Visuals
 
@@ -41,7 +38,7 @@ The project was carried out by one person for the purpose of learing and consoli
 
 ## Project status
 
-This project is on hold for correcting and feedback. Feel free to pull the code.
+This project is on hold for correcting and feedback. Feel free to pull the code and test the features.
 
 ## Support
 
@@ -83,5 +80,5 @@ Fördelar:
 *Kommer med ”Preflight”. En bas-css där alla element är ”nollade från början.
 *Kan leda till snabb protyping, när man väl lärt sig.
 *Det finns färre val vad gäller typsnittsstorlek, annan storlek, färger, skuggor men man kan också välja själv.
-\*Finns bra komponentbibliotek med nästan ostylade komponenter, där man kan lägga till Tailwind CSS.  
+*Finns bra komponentbibliotek med nästan ostylade komponenter, där man kan lägga till Tailwind CSS.  
 Nackdelar att det blir tjockt och ”klumpigt” i CSS:en. Tar lite tid att lära sig.

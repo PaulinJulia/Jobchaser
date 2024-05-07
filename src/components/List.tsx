@@ -1,11 +1,8 @@
-//@ts-nocheck
 import style from "./List.module.css";
-import { ListInfo } from "../types/types";
+import { ListInfo, Job } from "../types/types";
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import CardItem from "./CardItem";
 
 function List({ jobs }: ListInfo) {
   const [jobsListWithFavorite, setJobsListWithFavorite] = useState(
@@ -14,8 +11,24 @@ function List({ jobs }: ListInfo) {
     })
   );
 
-  const handleToggleButton = (id, e) => {
-    e.preventDefault();
+  useEffect(() => {
+    try {
+      const favoritesFromLocalStorage = localStorage.getItem("favoriteJobs");
+
+      if (favoritesFromLocalStorage) {
+        const favoriteData = JSON.parse(favoritesFromLocalStorage) as Job[];
+        const updatedFavoriteData = favoriteData.map((item) => ({
+          ...item,
+          favorite: !!item.favorite,
+        }));
+        setJobsListWithFavorite(updatedFavoriteData);
+      }
+    } catch (error) {
+      console.error("Error fetching favorite ads from localStorage", error);
+    }
+  }, []);
+
+  const onToggleButton = (id: string) => {
     const updatedJobsList = jobsListWithFavorite.map((item) =>
       item.id === id ? { ...item, favorite: !item.favorite } : item
     );
@@ -25,32 +38,9 @@ function List({ jobs }: ListInfo) {
 
   return (
     <ul className={style["card-list"]}>
-      {" "}
-      {jobsListWithFavorite.map((job) => (
-        <motion.div key={job.id} whileHover={{ scale: 1.2 }}>
-          <li className={style.card}>
-            <a href={job.source_links[0].url} target="_blank">
-              <div className={style.headline}>
-                <p className={style["card-title"]}>{job.headline}</p>
-                <button
-                  onClick={(e) => {
-                    handleToggleButton(job.id, e);
-                  }}
-                  className={style["favorite-star"]}
-                >
-                  <FontAwesomeIcon
-                    icon={job.favorite ? solidStar : regularStar}
-                  />
-                </button>
-              </div>
-              <p className={style["card-brief"]}>{job.brief}</p>
-              <div className={style["card-info"]}>
-                <p>{job.workplace_addresses[0].municipality}</p>
-                <p>{job.occupation_field.label}</p>
-                <p className={style.employer}>{job.employer.name}</p>
-              </div>
-            </a>
-          </li>
+      {jobsListWithFavorite.map((ad) => (
+        <motion.div key={ad.id} whileHover={{ scale: 1.2 }}>
+          <CardItem key={ad.id} ad={ad} onToggleButton={onToggleButton} />
         </motion.div>
       ))}
     </ul>
