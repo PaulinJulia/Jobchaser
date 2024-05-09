@@ -12,7 +12,7 @@ This project is meant to be a tool for students to find internships or jobs. You
 
 In this project, I see the strength in the process. The project started for example with CSS modules and later added on tailwind, it was first written in Javascript and later in the process transformed to Typescript. It started with the hook useReducer and later the Redux toolkit. All updates have been messy but also educative.  
 
-I see improvement opportunities such as using destructering more as props. I think the documentation of the API could have been more clear to be able to use the API better. The UX/UI could have been nicer and I would have loved to done more animations with Framer Motion. Unfortunately, a lot of time has been spent on favorites.
+I see improvement opportunities such as using destructering more as props. I think the documentation of the API could have been more clear to be able to use the API better. The function of the favorites could only have been an option for the user with an account. The UX/UI could have been nicer and I would have loved to do more animations with Framer Motion. Unfortunately, a lot of time has been spent on favorites.
 
 During this project, I've learned that it goes relatively fast to build applications in React. Even though there are a lot of files and dependencies to install. 
 
