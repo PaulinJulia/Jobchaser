@@ -21,6 +21,7 @@ import { Job } from "./types/types";
 import { fetchAds } from "./store/slices/categorySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/store";
+import { Dispatch } from "@reduxjs/toolkit";
 
 function ProtectedRoute() {
   const authContext = useContext(AuthContext);
@@ -34,14 +35,22 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const { jobs, position } = useSelector((state: RootState) => state.category);
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
-    dispatch(fetchAds(position)).then(() => {
-      setIsLoading(false);
-    });
-  }, [position]);
+
+    const fetchDataPosition = async () => {
+      try {
+        await dispatch(fetchAds(position));
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching ads position", error);
+        setIsLoading(false);
+      }
+    };
+    fetchDataPosition();
+  }, [dispatch, position]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);

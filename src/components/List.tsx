@@ -5,28 +5,11 @@ import { useState, useEffect } from "react";
 import CardItem from "./CardItem";
 
 function List({ jobs }: ListInfo) {
-  const [jobsListWithFavorite, setJobsListWithFavorite] = useState(
+  const [jobsListWithFavorite, setJobsListWithFavorite] = useState<Job[]>(
     jobs.map((item) => {
       return { ...item, favorite: false };
     })
   );
-
-  useEffect(() => {
-    try {
-      const favoritesFromLocalStorage = localStorage.getItem("favoriteJobs");
-
-      if (favoritesFromLocalStorage) {
-        const favoriteData = JSON.parse(favoritesFromLocalStorage) as Job[];
-        const updatedFavoriteData = favoriteData.map((item) => ({
-          ...item,
-          favorite: !!item.favorite,
-        }));
-        setJobsListWithFavorite(updatedFavoriteData);
-      }
-    } catch (error) {
-      console.error("Error fetching favorite ads from localStorage", error);
-    }
-  }, []);
 
   const onToggleButton = (id: string) => {
     const updatedJobsList = jobsListWithFavorite.map((item) =>
@@ -35,6 +18,28 @@ function List({ jobs }: ListInfo) {
     setJobsListWithFavorite(updatedJobsList);
     localStorage.setItem("favoriteJobs", JSON.stringify(updatedJobsList));
   };
+
+  useEffect(() => {
+    try {
+      const favoritesFromLocalStorage = localStorage.getItem("favoriteJobs");
+
+      if (favoritesFromLocalStorage) {
+        const favoriteData = JSON.parse(favoritesFromLocalStorage) as Job[];
+
+        const updatedFavoriteData = jobsListWithFavorite.map((item1) => {
+          const isFavorite = favoriteData.some(
+            (item2) => item2.id === item1.id && item2.favorite == true
+          );
+
+          return { ...item1, favorite: isFavorite };
+        });
+
+        setJobsListWithFavorite(updatedFavoriteData);
+      }
+    } catch (error) {
+      console.error("Error fetching favorite ads from localStorage", error);
+    }
+  }, []);
 
   return (
     <ul className={style["card-list"]}>

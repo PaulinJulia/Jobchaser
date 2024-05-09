@@ -10,14 +10,15 @@ This project is meant to be a tool for students to find internships or jobs. You
 
 ## Strengths and weaknesses
 
-In this project, I see the strength in the process. The project started for example with css-modules and later added on tailwind, it was first written in Javascript and later in the process transformed to Typescript and it started with the hook useReducer and later the Redux toolkit. All updates have been messy but also educative.
+In this project, I see the strength in the process. The project started for example with CSS modules and later added on tailwind, it was first written in Javascript and later in the process transformed to Typescript. It started with the hook useReducer and later the Redux toolkit. All updates have been messy but also educative.  
 
-I see improvement opportunities such as using destructering more as props.
-I think the documentation of the API could have been more clear in order to be able to use the API better. The UX/UI could have been better.
+I see improvement opportunities such as using destructering more as props. I think the documentation of the API could have been more clear to be able to use the API better. The UX/UI could have been nicer.  
 
-During this project, I've learned that it goes relatively fast to build an applications in React. Even though there are a lot of files and dependencies to install. Today I better understand the power of React and using components, that they are reusable, easier to replace and move around.
+During this project, I've learned that it goes relatively fast to build applications in React. Even though there are a lot of files and dependencies to install. 
 
-In general, the project could have been cleaner but in educational purpose it have been good with this step by step method for learing React. 
+Today I better understand the power of React and using components. I like that they are reusable, easy to replace, and move around. I have also learned that the ternary operator is very useful and more about how global and local states work, and how to put the components together.
+
+In general, the project could have been cleaner but for educational purposes, it has been good with this step-by-step method for learning React.
 
 ## Visuals
 
@@ -43,7 +44,6 @@ This project is on hold for correcting and feedback. Feel free to pull the code 
 ## Support
 
 email address: julia.paulin@chasacademy.se
-
 
 
 ## Del 4
